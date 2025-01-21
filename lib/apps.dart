@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_exchange_app/screens/sign_in_screen.dart';
 
 class SkillExApp extends StatefulWidget {
   const SkillExApp({super.key});
@@ -76,7 +77,12 @@ class _SkillExAppState extends State<SkillExApp> {
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignInScreen()));
+                      },
                       child: Container(
                         height: 50,
                         width: 300,
