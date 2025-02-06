@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_exchange_app/screens/forgot_email_screen.dart';
 import 'package:skill_exchange_app/screens/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -66,7 +67,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 50,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: const Center(
@@ -106,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 217, 213, 213),
+                        fillColor: Colors.white,
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -132,7 +133,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 217, 213, 213),
+                        fillColor: Colors.white,
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -160,11 +161,37 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ForgotEmailScreen()));
+                      },
+                      child: const Text(
+                        "Forgot Email?",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
                   ],
                 )),
           )
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailTEcontroller.dispose();
+    _passwordTEcontroller.dispose();
+    super.dispose();
   }
 }

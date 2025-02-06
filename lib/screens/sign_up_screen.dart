@@ -38,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 50,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: const Center(
@@ -107,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 217, 213, 213),
+                        fillColor: Colors.white,
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -133,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 217, 213, 213),
+                        fillColor: Colors.white,
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -149,7 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _lastNameTEcontroller,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
-                        labelText: "Last",
+                        labelText: "Last Name",
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
@@ -159,7 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 217, 213, 213),
+                        fillColor: Colors.white,
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -185,7 +185,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 217, 213, 213),
+                        fillColor: Colors.white,
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -219,5 +219,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailTEcontroller.dispose();
+    _firstNameTEcontroller.dispose();
+    _lastNameTEcontroller.dispose();
+    _passwordTEcontroller.dispose();
+    super.dispose();
   }
 }
