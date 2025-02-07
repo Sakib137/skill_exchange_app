@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:skill_exchange_app/confirm_pass_screen.dart';
 
 class ForgotOtpScreen extends StatefulWidget {
   const ForgotOtpScreen({super.key});
@@ -77,7 +78,12 @@ class _ForgotOtpScreenState extends State<ForgotOtpScreen> {
                       const Size(200, 50),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ConfirmPassScreen()));
+                  },
                   child: const Text(
                     "Verify",
                     style: TextStyle(

@@ -154,7 +154,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         width: 300,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: const Color.fromARGB(255, 217, 213, 213),
+                          color: Colors.white,
                         ),
                         child: const Center(
                           child: Icon(Icons.login),
