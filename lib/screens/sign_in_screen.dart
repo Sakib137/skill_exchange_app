@@ -14,6 +14,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailTEcontroller = TextEditingController();
   final TextEditingController _passwordTEcontroller = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool _isObscure = false;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +109,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         filled: true,
                         fillColor: Colors.white,
+                        suffixIcon: Icon(Icons.email),
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -122,19 +124,31 @@ class _SignInScreenState extends State<SignInScreen> {
                     TextFormField(
                       controller: _passwordTEcontroller,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: const InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
+                      obscureText: !_isObscure,
+                      decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: const TextStyle(
+                            color: Colors.black,
                           ),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
+                          )),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
                           return "Password is required";

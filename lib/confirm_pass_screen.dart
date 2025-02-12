@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_exchange_app/screens/sign_in_screen.dart';
 
 class ConfirmPassScreen extends StatefulWidget {
   const ConfirmPassScreen({super.key});
@@ -8,8 +9,12 @@ class ConfirmPassScreen extends StatefulWidget {
 }
 
 class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
-  final TextEditingController _passwordTEcontroller = TextEditingController();
+  final TextEditingController _newpasswordTEcontroller =
+      TextEditingController();
+  final TextEditingController _confirmpasswordTEcontroller =
+      TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool _isObscure = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +54,7 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                   height: 24,
                 ),
                 TextFormField(
-                  controller: _passwordTEcontroller,
+                  controller: _newpasswordTEcontroller,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
                     labelText: "New Password",
@@ -75,20 +80,31 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                   height: 16,
                 ),
                 TextFormField(
-                  controller: _passwordTEcontroller,
+                  controller: _confirmpasswordTEcontroller,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
+                  obscureText: !_isObscure,
+                  decoration: InputDecoration(
                     labelText: "Confirm Password",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       color: Colors.black,
                     ),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.white,
                       ),
                     ),
                     filled: true,
                     fillColor: Colors.white,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                      icon: Icon(
+                        _isObscure ? Icons.visibility : Icons.visibility_off,
+                      ),
+                    ),
                   ),
                   validator: (String? value) {
                     if (value?.trim().isEmpty ?? true) {
@@ -107,11 +123,29 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                       padding:
                           WidgetStateProperty.all(const EdgeInsets.all(16)),
                       minimumSize: WidgetStateProperty.all(
-                          const Size(200, 50)), // Set your desired size here
+                        const Size(200, 50),
+                      ), // Set your desired size here
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formkey.currentState!.validate() &&
+                          _newpasswordTEcontroller.text ==
+                              _confirmpasswordTEcontroller.text) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignInScreen(),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Mismatch Password"),
+                          ),
+                        );
+                      }
+                    },
                     child: const Text(
-                      "Send",
+                      "Confirm",
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: 16,

@@ -11,6 +11,7 @@ class ForgotEmailScreen extends StatefulWidget {
 class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
   final TextEditingController _emailTEcontroller = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +65,7 @@ class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
                     ),
                     filled: true,
                     fillColor: Colors.white,
+                    suffixIcon: Icon(Icons.email),
                   ),
                   validator: (String? value) {
                     if (value?.trim().isEmpty ?? true) {
