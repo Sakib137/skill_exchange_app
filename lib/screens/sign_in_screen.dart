@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_exchange_app/home_screen.dart';
 import 'package:skill_exchange_app/screens/forgot_email_screen.dart';
 import 'package:skill_exchange_app/screens/sign_up_screen.dart';
 
@@ -161,7 +162,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        if (_formkey.currentState!.validate()) {}
+                        if (_formkey.currentState!.validate()) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
+                        }
                       },
                       child: Container(
                         height: 50,
